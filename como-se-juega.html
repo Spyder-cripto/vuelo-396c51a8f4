@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cómo se juega · Vuelo de Larga Distancia</title>
+  <link rel="stylesheet" href="estilo.css?v=202610222025">
+  <style>
+    .pieza { display: flex; gap: 14px; align-items: center; background: var(--panel); border: 1px solid var(--borde); border-radius: 10px; padding: 10px 12px; margin: 10px 0; }
+    .pieza canvas { flex: none; box-shadow: none; }
+    .pieza p { margin: 0; font-size: 15px; }
+    h2 { font-size: 18px; margin: 20px 0 6px; }
+    ol, ul { font-size: 15px; padding-left: 22px; }
+    li { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <div class="marco">
+    <h1>Cómo se juega</h1>
+    <p class="sub"><a href="index.html">← Volver al juego</a></p>
+    <h2>El objetivo</h2>
+    <p>Hay que llevar a <b>cada pasajero dormido a un asiento</b>: el nivel se gana cuando todos los asientos tienen un pasajero
+      y queda <b>al menos un tripulante despierto</b>.</p>
+    <h2>Las piezas</h2>
+    <div id="piezas"></div>
+    <h2>Los movimientos</h2>
+    <ul>
+      <li><b>Flechas</b> (o deslizar el dedo) para moverte. Empujas a un pasajero si lo tienes delante; nunca a dos seguidos.</li>
+      <li>Si hay <b>varios tripulantes</b>, todos se mueven a la vez con la misma tecla: el que choca se queda quieto.</li>
+      <li>Un tripulante que acaba en una <b>cápsula criogénica</b> se congela: pasa a ser un pasajero dormido y la cápsula se gasta.</li>
+      <li>Un pasajero que acaba en una <b>cápsula de descongelación</b> despierta: pasa a ser un tripulante y la cápsula se gasta.</li>
+      <li><b>Z</b> deshace, <b>R</b> reinicia. Si te quedas sin tripulantes despiertos, deshaz o reinicia.</li>
+    </ul>
+    <p class="nota">Basado en <i>Long Haul Space Flight</i>, de pap4qlxxlevb: las reglas son exactamente las del original.</p>
+  </div>
+  <script src="motor.js?v=202610222025"></script>
+  <script src="estilos.js?v=202610222025"></script>
+  <script src="comun.js?v=202610222025"></script>
+  <script>
+    (function () {
+      const V = globalThis.Vuelo, M = globalThis.VueloMotor;
+      const PIEZAS = [
+        [['p'], 'Tripulante', 'Lo manejas tú. Puede haber varios.'],
+        [['o'], 'Pasajero dormido', 'Se empuja. Tiene que acabar en un asiento.'],
+        [['x'], 'Asiento', 'Donde tiene que acabar cada pasajero.'],
+        [['s'], 'Pasajero en su asiento', 'Así queda cuando llega.'],
+        [['c'], 'Cápsula criogénica', 'Congela al tripulante que acaba en ella: se convierte en pasajero dormido.'],
+        [['t'], 'Cápsula de descongelación', 'Despierta al pasajero que acaba en ella: se convierte en tripulante.'],
+        [['w'], 'Pared', 'No se atraviesa.'],
+      ];
+      const caja = document.getElementById('piezas');
+      for (const [mapa, nombre, texto] of PIEZAS) {
+        const d = document.createElement('div'); d.className = 'pieza';
+        const c = document.createElement('canvas'); c.width = c.height = 52; V.dibujar(c.getContext('2d'), M.nivel(mapa), 52);
+        const p = document.createElement('p'); p.innerHTML = '<b>' + nombre + '.</b> ' + texto;
+        d.append(c, p); caja.appendChild(d);
+      }
+      // cápsula gastada
+      const d = document.createElement('div'); d.className = 'pieza';
+      const c = document.createElement('canvas'); c.width = 104; c.height = 52; const g = c.getContext('2d'); V.pieza(g, 0, 0, 52, 'crioGastada'); V.pieza(g, 52, 0, 52, 'descGastada');
+      const p = document.createElement('p'); p.innerHTML = '<b>Cápsulas gastadas</b> (criogénica y de descongelación). Ya no hacen nada: son suelo normal.';
+      d.append(c, p); caja.appendChild(d);
+    })();
+  </script>
+</body>
+</html>

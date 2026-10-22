@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vuelo de Larga Distancia</title>
+  <link rel="stylesheet" href="estilo.css?v=202610222025">
+</head>
+<body>
+  <div class="marco">
+    <h1>Vuelo de Larga Distancia</h1>
+    <p class="sub">Lleva a cada pasajero dormido a su asiento. Si te congelas, otro despertará por ti.</p>
+    <p class="nota" id="volverEditor" hidden style="margin-top:0"><a href="editor.html">← Volver al editor</a></p>
+    <div class="cabecera"><span class="nombre" id="nombre"></span><span class="info" id="info"></span></div>
+    <div class="tablero"><div class="lienzoCaja"><canvas id="lienzo" aria-label="Tablero de la nave"></canvas>
+      <div class="frase" id="frase" hidden><div class="fraseCaja"><p id="fraseTexto"></p><button id="fraseSeguir" class="principal">Continuar</button></div></div></div></div>
+    <div class="victoria" id="victoria" hidden></div>
+    <div class="botones">
+      <button id="deshacer">↶ Deshacer</button>
+      <button id="reiniciar">↺ Reiniciar</button>
+      <button id="botonPista">Pista</button>
+      <button id="solucion">Solución</button>
+      <button id="sonido" title="Sonido (tecla M)">🔊</button>
+    </div>
+    <div class="pista" id="pista" hidden></div>
+    <div class="tira" id="tira"></div>
+    <p class="nota">Flechas o deslizar el dedo: mover · <b>Z</b>: deshacer · <b>R</b>: reiniciar · <b>M</b>: sonido · espacio: siguiente nivel ·
+      <a href="como-se-juega.html">Cómo se juega</a></p>
+    <p class="nota">Basado en <i>Long Haul Space Flight</i>, de pap4qlxxlevb: sus reglas y sus sonidos. Dibujos propios; «Embarque» es un homenaje a su primer nivel.</p>
+  </div>
+  <script src="motor.js?v=202610222025"></script>
+  <script src="estilos.js?v=202610222025"></script>
+  <script src="sonidos.js?v=202610222025"></script>
+  <script src="comun.js?v=202610222025"></script>
+  <script src="niveles.js?v=202610222025"></script>
+  <script src="juego.js?v=202610222025"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+:root { --fondo: #eef2f7; --panel: #ffffff; --texto: #1e293b; --suave: #64748b; --borde: #cbd5e1; --acento: #0284c7; --ok: #16a34a; --rojo: #dc2626;
+  --boton: #ffffff; --boton-texto: #1e293b; --radio: 8px; --titulo: system-ui, sans-serif; --titulo-tam: 26px; --letra: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--fondo); color: var(--texto); font-family: var(--letra); }
+.marco { max-width: 680px; margin: 0 auto; padding: 14px 16px 28px; }
+h1 { font-family: var(--titulo); font-size: var(--titulo-tam); line-height: 1.35; margin: 4px 0 6px; letter-spacing: 0.5px; }
+.sub { color: var(--suave); font-size: 14px; margin: 0 0 10px; }
+.cabecera { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 6px 0; }
+.cabecera .nombre { font-weight: 700; font-size: 18px; }
+.cabecera .info { color: var(--suave); font-size: 14px; }
+.tablero { display: flex; justify-content: center; margin: 6px 0; }
+.lienzoCaja { position: relative; max-width: 100%; }
+.frase { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 12px; background: rgba(255, 255, 255, 0.55); border-radius: 6px; cursor: pointer; }
+.fraseCaja { background: var(--panel); color: var(--texto); border: 2px solid var(--acento); border-radius: 10px; padding: 14px 16px; max-width: 440px; text-align: center; }
+.fraseCaja p { margin: 0 0 12px; font-size: 16px; line-height: 1.45; white-space: pre-line; }
+canvas { display: block; max-width: 100%; touch-action: none; border-radius: 6px; border: 1px solid var(--borde); }
+.botones { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 10px 0; }
+button { font: inherit; font-size: 15px; padding: 7px 14px; border: 1px solid var(--borde); border-radius: var(--radio); background: var(--boton); color: var(--boton-texto); cursor: pointer; }
+button:hover { border-color: var(--acento); }
+button.principal { background: var(--acento); color: #fff; border-color: var(--acento); }
+.pista { background: #fffbeb; border: 1px solid #fcd34d; border-radius: 8px; padding: 8px 12px; margin: 8px 0; font-size: 15px; }
+.victoria { background: #ecfdf5; border: 1px solid #86efac; border-radius: 8px; padding: 10px 12px; margin: 8px 0; text-align: center; font-size: 16px; }
+.tira { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 12px 0 4px; }
+.tira button { width: 40px; height: 34px; padding: 0; font-weight: 700; font-size: 15px; border-radius: 8px; }
+.tira button.hecho { background: #3b82f6; color: #fff; border-color: #2563eb; }
+.tira button.actual { background: #ffffff; color: var(--texto); border: 2px solid var(--texto); }
+.tira button.abierto { background: #22c55e; color: #fff; border-color: #16a34a; }
+.tira button.cerrado { background: #ef4444; color: #fff; border-color: #dc2626; cursor: not-allowed; }
+.nota { color: var(--suave); font-size: 13px; text-align: center; margin: 8px 0; }
+.nota a, a { color: var(--acento); }
+[hidden] { display: none !important; }
+/* fondo de espacio (22-oct): el cielo va en un lienzo fijo detrás; los textos, en una tarjeta blanca */
+body.espacio { background: transparent; }
+body.espacio .marco { background: var(--fondo-tarjeta, var(--panel)); border: 2px solid var(--borde); border-radius: 16px; margin: 20px auto; }
+body.tarjeta-cristal .marco { backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+/* con la tarjeta oscura: lo que lleva fondo claro propio conserva el texto oscuro */
+.pista, .victoria, .tira button.actual { color: #1d2738; }
+body.tarjeta-oscura button.principal { color: #1d2738; }
+body.tarjeta-oscura canvas { border-color: #3a4a85; }
+@media (max-width: 720px) { body.espacio .marco { margin: 10px; } }
+body.tarjeta-oscura .frase { background: rgba(10, 16, 40, 0.55); }
