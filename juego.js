@@ -58,6 +58,8 @@
   pintarSonido();
   function info() {
     if (!partida) return;
+    // sin tripulantes despiertos (y sin haber ganado) no se puede mover nada: avisar de cómo salir
+    $('sinTripulantes').hidden = !(!partida.anim && !partida.ganado && partida.estado.j.length === 0);
     $('info').textContent = `Nivel ${actual + 1} de ${niveles.length} · Pasos: ${partida.pasos}`;
   }
   function ganado(pasos, conSolucion) {

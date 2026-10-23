@@ -34,7 +34,8 @@ body.espacio { background: transparent; }
 body.espacio .marco { background: var(--fondo-tarjeta, var(--panel)); border: 2px solid var(--borde); border-radius: 16px; margin: 20px auto; }
 body.tarjeta-cristal .marco { backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
 /* con la tarjeta oscura: lo que lleva fondo claro propio conserva el texto oscuro */
-.pista, .victoria, .tira button.actual { color: #1d2738; }
+.pista, .victoria, .aviso, .tira button.actual { color: #1d2738; }
+.aviso { background: #fff1e0; border: 1px solid #f2a65a; border-radius: 8px; padding: 8px 12px; margin: 8px 0; font-size: 15px; text-align: center; }
 body.tarjeta-oscura button.principal { color: #1d2738; }
 body.tarjeta-oscura canvas { border-color: #3a4a85; }
 @media (max-width: 720px) { body.espacio .marco { margin: 10px; } }
