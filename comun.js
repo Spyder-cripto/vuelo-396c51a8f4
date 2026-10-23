@@ -213,7 +213,7 @@
   const leerCodigo = (t) => { const d = JSON.parse(new TextDecoder().decode(deB64(t.trim()))); M.nivel(d.mapa); return d; };
 
   // ---------- progreso y desbloqueo (lineal, como el original: cada nivel abre el siguiente) ----------
-  const PROG = 'vuelo-progreso-v1';
+  const PROG = 'vuelo-progreso-v2';
   function progreso() { try { return JSON.parse(localStorage.getItem(PROG) || '{}'); } catch (e) { return {}; } }
   function guardarProgreso(p) { try { localStorage.setItem(PROG, JSON.stringify(p)); } catch (e) { /* sin almacenamiento */ } }
   function abierto(i, hechos) { return i === 0 || !!hechos[i - 1] || !!hechos[i]; }
